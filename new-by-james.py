@@ -19,14 +19,14 @@ class GartnerScraper(object):
 
     def load_webpage(self):
         driver = self.driver
-        driver.get("https://www.gartner.com/")
-        assert "Gartner" in driver.title
+        driver.get("https://www.gartner.com/en/search?keywords=ai")  # Need to change
+        # assert "Gartner" in driver.title
         pass
 
     def carry_out_search(self, search_term):
         driver = self.driver
         # Before searching
-        search_button = driver.find_element_by_class_name("nav-icon gcom-icon-search")  # This doesn't work!
+        search_button = driver.find_element_by_class_name("search")  # This doesn't work!
         search_button.click()
         time.sleep(5)  # Just for testing, to see if anything shows up before we start typing (sleeps for 5 seconds)
         search_bar = driver.find_element_by_id("searchString")  # Doubt this works either...
@@ -41,6 +41,17 @@ class GartnerScraper(object):
         self.total_results[search_term] = num_results
 
     def scrape_save_page(self):
+        driver = self.driver
+
+        # Get all of the headings
+        result_heading = driver.find_elements_by_class_name('result-heading')
+        for heading in result_heading:
+            print(heading.text)
+
+        # Get all of the summaries
+        result_texts = driver.find_elements_by_class_name('result-text')
+        for text in result_texts:
+            print(text.text)
         pass
 
     def next_page(self):
@@ -55,4 +66,5 @@ chromedriver_path = "C:/Users/James/Desktop/chromedriver_win32/chromedriver.exe"
 # Testing code
 x = GartnerScraper(chromedriver_path)
 x.load_webpage()
-x.carry_out_search("AI")
+# x.carry_out_search("AI")
+x.scrape_save_page()
