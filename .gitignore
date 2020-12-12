@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.idea/ai-research-scraper.iml
+.idea/misc.xml
