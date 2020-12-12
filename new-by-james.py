@@ -22,8 +22,8 @@ class GartnerScraper(object):
 
     def load_webpage(self):
         driver = self.driver
-        driver.get("https://www.gartner.com/")
-        assert "Gartner" in driver.title
+        driver.get("https://www.gartner.com/en/search?keywords=ai")  # Need to change
+        # assert "Gartner" in driver.title
         pass
 
     def carry_out_search(self, search_term):
@@ -43,6 +43,17 @@ class GartnerScraper(object):
         # self.total_results[search_term] = num_results
 
     def scrape_save_page(self):
+        driver = self.driver
+
+        # Get all of the headings
+        result_heading = driver.find_elements_by_class_name('result-heading')
+        for heading in result_heading:
+            print(heading.text)
+
+        # Get all of the summaries
+        result_texts = driver.find_elements_by_class_name('result-text')
+        for text in result_texts:
+            print(text.text)
         pass
 
     def next_page(self):
@@ -57,4 +68,5 @@ chromedriver_path = "C:/bin/chromedriver.exe"  # Change this to your own driver 
 # Testing code
 x = GartnerScraper(chromedriver_path)
 x.load_webpage()
-x.carry_out_search("AI")
+# x.carry_out_search("AI")
+x.scrape_save_page()
