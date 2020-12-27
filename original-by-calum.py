@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 30 16:43:58 2019
 
-@author: Calum
-"""
 
 import requests
 from requests.exceptions import Timeout
