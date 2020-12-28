@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 .idea/ai-research-scraper.iml
 .idea/misc.xml
+*.csv
