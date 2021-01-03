@@ -1,3 +1,7 @@
+"""
+Need to update to search for other terms and only add the row if it doesn't already exist
+"""
+
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -6,6 +10,7 @@ from datetime import datetime
 
 
 def create_url(url_str, page_num, search_term):
+    search_term = search_term.replace(" ", "%20")
     url_str = url_str.replace('<Search_Term>', search_term)
     url_str = url_str.replace('<Page_Num>', page_num)
     return url_str
@@ -61,7 +66,6 @@ def create_output_doc():
 
 
 def add_page_content(url, dataframe):
-
     soup = get_soup(url)
 
     title = soup.find('h1').text.strip()
@@ -93,12 +97,12 @@ def visit_each_page(report_list, full_results):
     return full_results
 
 
-# ---- MAIN ---- #
+# ---- MAIN ---- # TURN ALL THIS INTO A NICE FUNCTION SO IN THE OTHER FILE YOU DON'T DO MUCH
 url_str = 'https://www.gartner.com/en/search?keywords=<Search_Term>&page=<Page_Num>'
-search_url = create_url(url_str, '1', 'AI')
+search_url = create_url(url_str, '1', 'machine learning')
 search_soup = get_soup(search_url)
 
-link_list = get_doc_list(search_soup, url_str, 'AI')
+link_list = get_doc_list(search_soup, url_str, 'machine learning')
 report_list = trim_reports(link_list)
 
 results_df = create_output_doc()

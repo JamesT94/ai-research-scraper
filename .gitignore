@@ -130,3 +130,4 @@ dmypy.json
 .idea/ai-research-scraper.iml
 .idea/misc.xml
 *.csv
+.idea/.name
