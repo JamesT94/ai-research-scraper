@@ -117,3 +117,5 @@ def get_csv(search_terms):
     report_list = trim_reports(link_list)
     results_df = results_df.append(visit_each_page(report_list, results_df))
     results_df.to_csv('idc.csv', encoding='utf-8-sig', index=False)
+
+    return results_df

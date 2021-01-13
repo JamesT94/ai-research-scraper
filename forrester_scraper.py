@@ -21,10 +21,15 @@ def create_url(url_str, page_num, search_term):
 def get_soup(url):
     response = 0
     try:
-        response = requests.get(url, timeout=(3, 10))
+        response = requests.get(url, timeout=30)
         print('Got a connection to {}'.format(url))
     except requests.exceptions.RequestException as e:
         print(e)
+        try:
+            response = requests.get(url, timeout=30)
+            print('Got a connection to {}'.format(url))
+        except requests.exceptions.RequestException as e:
+            print(e)
 
     result_soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser')
     return result_soup
@@ -112,3 +117,5 @@ def get_csv(search_terms):
     report_list = trim_reports(link_list)
     results_df = results_df.append(visit_each_page(report_list, results_df))
     results_df.to_csv('forrester.csv', encoding='utf-8-sig', index=False)
+
+    return results_df
