@@ -7,6 +7,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import re
 from datetime import datetime
+from tqdm import tqdm
 
 
 def create_url(url_str, page_num, search_term):
@@ -32,7 +33,7 @@ def get_doc_list(link_list, first_search_soup, url_str, search_term):
     num_pages = first_search_soup.find('div', class_='found-result col-xs-12').text.strip()
     num_pages = int(num_pages.split(' ')[-1])
 
-    for page in range(1, num_pages + 1):
+    for page in tqdm(range(1, num_pages + 1)):
         url = create_url(url_str, str(page), search_term)
         soup = get_soup(url)
         links = soup.find_all('a', class_='result-heading')
@@ -92,7 +93,7 @@ def add_page_content(url, dataframe):
 
 
 def visit_each_page(report_list, full_results):
-    for link in report_list['Link']:
+    for link in tqdm(report_list['Link']):
         full_results = add_page_content(link, full_results)
     return full_results
 
