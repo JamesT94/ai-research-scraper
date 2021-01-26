@@ -9,6 +9,7 @@ import re
 from datetime import datetime
 from random import randint
 from time import sleep
+from tqdm import tqdm
 
 
 def create_url(url_str, page_num, search_term):
@@ -25,11 +26,7 @@ def get_soup(url):
         print('Got a connection to {}'.format(url))
     except requests.exceptions.RequestException as e:
         print(e)
-        try:
-            response = requests.get(url, timeout=30)
-            print('Got a connection to {}'.format(url))
-        except requests.exceptions.RequestException as e:
-            print(e)
+        pass
 
     result_soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser')
     return result_soup
@@ -40,7 +37,7 @@ def get_doc_list(link_list, first_search_soup, url_str, search_term):
     num_results = num_results.split(' ')[0]
     num_pages = int(num_results) // 25
 
-    for page in range(1, num_pages + 1):
+    for page in tqdm(range(1, num_pages + 1)):
         url = create_url(url_str, str(page), search_term)
         soup = get_soup(url)
         links = soup.find_all('a', class_='title')
@@ -96,7 +93,7 @@ def add_page_content(url, dataframe):
 
 
 def visit_each_page(report_list, full_results):
-    for link in report_list['Link']:
+    for link in tqdm(report_list['Link']):
         full_results = add_page_content(link, full_results)
     return full_results
 

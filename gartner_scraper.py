@@ -21,9 +21,10 @@ def get_soup(url):
     response = 0
     try:
         response = requests.get(url, timeout=(3, 10))
-        print('Got a connection to {}'.format(url))
+        print(' Got a connection to {}'.format(url))
     except requests.exceptions.RequestException as e:
         print(e)
+        pass
 
     result_soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser')
     return result_soup
@@ -38,7 +39,7 @@ def get_doc_list(link_list, first_search_soup, url_str, search_term):
         soup = get_soup(url)
         links = soup.find_all('a', class_='result-heading')
         for link in links:
-            link_list.append(link['href'])
+            link_list.append('https://www.gartner.com' + link['href'])
 
     return link_list
 
