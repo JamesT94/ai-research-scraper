@@ -1,5 +1,7 @@
 # AI Research Web Scraper
 
+*For a full write-up of this project please visit my website at [JamesTaylor.dev](https://jamestaylor.dev)*
+
 ## Overview
 The purpose of this program is to scrape recently published reports from the research and advisory companies Gartner, Forrester, and IDC. There are several customisable elements of the main script that are explained below in the '[How To Use](#how-to-use)' section.
 
