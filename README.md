@@ -13,18 +13,34 @@ The main script [research_scraper.py](https://github.com/JamesT94/ai-research-sc
 The [research_scraper.py](https://github.com/JamesT94/ai-research-scraper/blob/main/research_scraper.py) script can be executed from the command line and then you'll be asked for the following inputs.  
 
 
-1. The sites available for scraping are: Gartner`[1]`, Forrester`[2]`, IDC`[3]`, All`[4]`
-Please select an option (1-4).
+`---SCRAPING OPTIONS---`  
+`The scraping options available are: Gartner[1], Forrester[2], IDC[3], All[4]`  
+`Please select an option (1-4): `  
 
-2. The current search terms are: `[AI, Artificial Intelligence, Machine Learning, etc.]`
-Please Enter to continue.
+`---SEARCH TERMS---`  
+`The current search terms are: `  
+`['ai', 'artificial intelligence', 'machine learning', 'big data']`  
+`Press Enter to continue`
 
-3. The output files will be saved in the following directory:
-Press Enter to continue or type 1 to change the directory.
+`---OUTPUT DIRECTORY---`  
+`The output files will be saved in the following directory: `  
+`D:\GithubRepos\ai-research-scraper`  
+`Press 1 to continue or 2 to change the directory:`  
 
-4. Scraping: All
-Search Terms: `[AI, Artificial Intelligence, Machine Learning, etc.]`
-Output Directory: ...
+`---FINAL CONFIRMATION---`  
+`Scraping: Gartner`  
+`Search Terms: ['ai', 'artificial intelligence', 'machine learning', 'big data']`  
+`Output Directory: D:\GithubRepos\ai-research-scraper`  
 
-The entire scraping process may take up to 30 minutes for all sites.
-Press Enter to begin...
+`Press Enter to begin...`
+
+
+## Progress Monitoring
+I've used tqdm to add a simplisitc progress bar to each stage of the process.
+
+![Progress Bar](https://github.com/JamesT94/ai-research-scraper/blob/main/imgs/progress_bar.png)
+
+After collating a full list of all pages to visit the scraper will remove any duplicates before visiting each page and saving the required data.
+
+## Outputs
+The program will output a single .csv file containing all outputs.
