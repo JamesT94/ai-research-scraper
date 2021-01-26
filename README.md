@@ -1,7 +1,7 @@
 # AI Research Web Scraper
 
 ## Overview
-The purpose of this tool is to scrape recently published reports from the research and advisory companies, Gartner, Forrester, and IDC. There are several customisable elements of the main script that are detailed below in the '[How To Use](#how-to-use)' section.
+The purpose of this program is to scrape recently published reports from the research and advisory companies Gartner, Forrester, and IDC. There are several customisable elements of the main script that are explained below in the '[How To Use](#how-to-use)' section.
 
 The main script [research_scraper.py](https://github.com/JamesT94/ai-research-scraper/blob/main/research_scraper.py) utilises the following customised web scraping scripts.  
 
