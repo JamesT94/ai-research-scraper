@@ -94,7 +94,10 @@ def add_page_content(url, dataframe):
 
 def visit_each_page(report_list, full_results):
     for link in tqdm(report_list['Link']):
-        full_results = add_page_content(link, full_results)
+        try:
+            full_results = add_page_content(link, full_results)
+        except AttributeError:
+            pass
     return full_results
 
 
