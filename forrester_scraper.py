@@ -21,14 +21,15 @@ def create_url(url_str, page_num, search_term):
 
 def get_soup(url):
     response = 0
+    result_soup = 0
     try:
         response = requests.get(url, timeout=30)
         print('Got a connection to {}'.format(url))
+        result_soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser')
     except requests.exceptions.RequestException as e:
         print(e)
         pass
 
-    result_soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser')
     return result_soup
 
 
