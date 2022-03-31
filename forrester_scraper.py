@@ -38,7 +38,7 @@ def get_doc_list(link_list, first_search_soup, url_str, search_term):
     num_results = num_results.split(' ')[0]
     num_pages = int(num_results) // 25
 
-    for page in tqdm(range(1, num_pages + 1)):
+    for page in tqdm(range(1, 3 + 1)):
         url = create_url(url_str, str(page), search_term)
         soup = get_soup(url)
         links = soup.find_all('a', class_='title')

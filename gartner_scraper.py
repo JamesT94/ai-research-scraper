@@ -32,7 +32,7 @@ def get_soup(url):
 
 def get_doc_list(link_list, first_search_soup, url_str, search_term):
     num_pages = first_search_soup.find('div', class_='found-result col-xs-12').text.strip()
-    num_pages = int(num_pages.split(' ')[-1])
+    num_pages = int((num_pages.split(' ')[-1]).replace(',', ''))
 
     for page in tqdm(range(1, num_pages + 1)):
         url = create_url(url_str, str(page), search_term)

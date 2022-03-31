@@ -74,10 +74,11 @@ print('\n' * 1)
 input('Press Enter to begin scraping...')
 
 
-gartner_df = gartner_scraper.get_csv(search_terms)
-forrester_df = forrester_scraper.get_csv(search_terms)
+# gartner_df = gartner_scraper.get_csv(search_terms)
+gartner_df = pd.read_csv('gartner.csv')
+# forrester_df = forrester_scraper.get_csv(search_terms)
 idc_df = idc_scraper.get_csv(search_terms)
 
 
-full_df = pd.concat([gartner_df, forrester_df, idc_df])
+full_df = pd.concat([gartner_df, idc_df])
 full_df.to_csv('research.csv', encoding='utf-8-sig', index=False)
